@@ -1,0 +1,9 @@
+some notes
+
+# For development (with live reload):
+docker build -t myapp-dev --target dev .
+docker run -v $(pwd):/app -p 3000:3000 -p 8080:8080 myapp-dev
+
+# For production:
+docker build -t myapp-prod --target production .
+docker run -p 8080:8080 myapp-prod
