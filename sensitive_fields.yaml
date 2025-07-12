@@ -1,0 +1,14 @@
+# fields:
+#   - ssn
+#   - email
+#   - phone
+#   - full_name
+
+
+
+sensitive_fields:
+  - password
+  - email
+  - ssn
+  - token
+  - credit_card

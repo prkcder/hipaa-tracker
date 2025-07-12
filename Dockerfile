@@ -14,8 +14,10 @@ RUN npm run build
 FROM golang:1.24-alpine AS backend-builder
 WORKDIR /app
 
+RUN apk add --no-cache git
+
 # copying the file needed for modul initialization first
-COPY cmd/main.go ./cmd/
+# COPY cmd/main.go ./cmd/
 COPY go.mod go.sum* ./
 # # if i have internal packages
 # COPY internal/ ./internal/ 
@@ -33,6 +35,7 @@ RUN if [ ! -f go.mod ]; then \
 # RUN go mod download
     
 COPY . .
+
 # Build
 RUN go build -o /app/main ./cmd/main.go
 
@@ -64,7 +67,8 @@ WORKDIR /app
 # ENV AWS_SECRET_ACCESS_KEY=""
 
 COPY --from=backend-builder /app/main .
-COPY --from=frontend-builder /app/frontend/dist ./static
+COPY --from=backend-builder /app/sensitive_fields.yaml .
+# COPY --from=frontend-builder /app/web/dist ./static
 
 EXPOSE 8080
 CMD ["./main"]

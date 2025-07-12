@@ -7,3 +7,277 @@ docker run -v $(pwd):/app -p 3000:3000 -p 8080:8080 myapp-dev
 # For production:
 docker build -t myapp-prod --target production .
 docker run -p 8080:8080 myapp-prod
+
+
+
+# target: backend-builder
+issue of why it never ran correctly
+The backend-builder stage is never meant to be a target - it's just the build step that both dev and production stages use.
+
+
+Base + Override approach:
+
+docker-compose.yml = base configuration
+docker-compose.override.yml = your development setup (auto-loaded)
+docker-compose.prod.yml = production setup
+
+
+Base + Explicit files approach:
+
+docker-compose.yml = base configuration
+docker-compose.dev.yml = development setup (explicit)
+docker-compose.prod.yml = production setup
+
+
+
+The docker-compose.dev.yml is used when:
+
+You want to be explicit about which environment you're running
+You have multiple development configurations (e.g., dev, dev-debug, dev-testing)
+You're working in a team where everyone needs to use the same explicit commands
+
+For Your Use Case:
+I'd recommend the Override approach:
+bash# Development (automatic)
+docker-compose up
+
+# Production (explicit)
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+Bottom line: docker-compose.dev.yml and docker-compose.override.yml serve the same purpose - they're just different ways to organize your development configuration. Pick one approach and stick with it!
+Most developers prefer the override approach because it's less typing for daily development work.
+
+Docker Compose File Structure
+1. docker-compose.yml (Base Configuration)
+yamlservices:
+  backend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8080"
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=myapp
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/seed_db.sql:/docker-entrypoint-initdb.d/seed_db.sql
+    
+volumes:
+  postgres_data:
+2. docker-compose.dev.yml (Development Overrides)
+yamlservices:
+  backend:
+    build:
+      target: dev  # Use the dev stage with hot reloading
+    volumes:
+      - .:/app  # Mount source code for live changes
+      - /app/node_modules  # Exclude node_modules
+    environment:
+      - NODE_ENV=development
+    command: ["air"]  # Override to use air for hot reloading
+    
+  # Add frontend for development
+  frontend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      target: frontend-builder
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./web:/app/web
+      - /app/web/node_modules
+    working_dir: /app/web
+    command: ["npm", "run", "dev"]
+3. docker-compose.prod.yml (Production Overrides)
+yamlservices:
+  backend:
+    build:
+      target: production  # Or omit target to use final stage
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    # Remove volume mounts (use built-in files)
+    
+  db:
+    restart: unless-stopped
+    # In production, you might use managed DB instead
+4. docker-compose.override.yml (Auto-loaded Development)
+yaml# This file is automatically loaded by docker-compose
+# Use this for your default development setup
+services:
+  backend:
+    build:
+      target: dev
+    volumes:
+      - .:/app
+    command: ["air"]
+Usage Commands:
+Development (3 options):
+Option 1: Using override file (automatic)
+bashdocker-compose up  # Automatically uses docker-compose.override.yml
+Option 2: Explicit dev file
+bashdocker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+Option 3: Set environment variable
+bashCOMPOSE_FILE=docker-compose.yml:docker-compose.dev.yml docker-compose up
+Production:
+bashdocker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+Testing (base only):
+bashdocker-compose -f docker-compose.yml up  # Uses production build
+Recommended Approach:
+
+Use docker-compose.override.yml for your main development workflow
+Keep base docker-compose.yml clean and environment-agnostic
+Use explicit -f flags when you need specific environments
+
+For your current workflow:
+Since you're developing, create a docker-compose.override.yml with the dev target, and just run:
+bashdocker-compose up
+This automatically combines the base file with your override file!
+
+
+
+
+
+
+
+
+🔨 Phase 1: Scaffolding & Infrastructure
+Step	Task	Description
+1	📁 Create Project Structure	Create folders above in hipaa-tracker/
+2	🐳 Write Dockerfile	Use golang:1.22-alpine image with COPY . /app and set up Go build/run
+3	🐳 Add docker-compose.yml	Spin up: Go backend, Postgres, and optional Adminer
+4	🐘 Initialize Postgres	Write init.sql or use migrations (for stretch) to create a basic events table
+5	🧪 Write .env file	Store secrets like DB connection info
+6	🧱 Run go mod init github.com/yourname/hipaa-tracker	Initialize Go modules
+7	✅ Test Docker Build	Run docker-compose up --build and fix any issues early
+
+👨‍💻 Phase 2: Start With Backend (Recommended)
+Backend first gives you an API to test the frontend against. Focus on:
+
+Step	Task	Description
+8	✨ main.go	Set up simple HTTP server on :8080 with one route /track
+9	📦 handler.go	Create handler for POST /track, decode JSON event
+10	🔐 sanitizer.go	Read sensitive_fields.yaml, strip them from incoming data
+11	📨 forwarder.go	Simulate forwarding to 3rd party (e.g., log to file or dummy URL)
+12	🧠 storage.go	Save sanitized event to Postgres
+13	✅ Test /track (named it event so change if needed) with curl/postman	Send sample payload and confirm sanitization, DB save, forward works
+14	🧪 Write unit tests	For sanitizer and handler logic (basic coverage)
+
+🌐 Phase 3: Frontend UI
+Step	Task	Description
+15	🧱 index.html	Simple form: name, email, activity type, timestamp
+16	💬 events.js	On submit: send POST to /track using fetch
+17	🧪 Local test	Load index.html via Live Server or serve via Go and confirm event hits backend
+
+🧠 Phase 4: Stretch Goals
+Step	Task	Description
+18	🔍 Web UI for viewing events	Add /events endpoint in Go + template rendering OR separate viewer in frontend
+19	✅ Adminer or pgweb	Add UI to explore Postgres data easily
+20	⚙️ Configurable sanitizer	Use sensitive_fields.yaml to control what’s stripped
+21	🚀 Simulate AWS forward	Use dummy SNS or SQS endpoint and log success/failures
+22	🔍 Add logging	Add structured logging with request/response logs and error handling
+23	🧪 More tests	Add table-driven tests for edge cases in sanitization or error flows
+24	📜 Polish README	Add usage steps, stack explanation, and sample payloads
+
+🪄 Bonus (Optional Polish):
+Add Swagger/OpenAPI spec for the /track endpoint
+
+Deploy to Render or Railway (Postgres + Go free tier)
+
+Use environment-based config (prod, dev, etc.)
+
+Include basic auth or API key protection for /track
+
+💡 Tech Stack Summary (Resume / Readme-Friendly)
+Golang: Backend service for privacy-preserving event tracking
+
+PostgreSQL: Stores sanitized event data
+
+TypeScript / JS: Frontend for generating and submitting events
+
+Docker / Docker Compose: Containerized dev and deployment environment
+
+Optional AWS Sim: Mimic HIPAA-compliant forwarding logic
+
+Bonus Testing: Go unit tests using built-in testing package
+
+
+
+
+If You Presented This to Freshpaint...
+Strengths:
+
+Thoughtful Go + Postgres architecture
+
+Strong understanding of data privacy and event pipelines
+
+Structured, testable, Dockerized project
+
+Aligned with their domain + tech stack
+
+Bonus: frontend + CLI integration can be added incrementally
+
+Tips for Demo:
+
+Talk about why you chose redaction via YAML (flexible, product-like config)
+
+Show how the sanitizer, DB, and forwarder represent key parts of an analytics pipeline
+
+Offer ideas like retroactive sanitization or multi-destination forwarding to show forward-thinking
+
+✅ Summary
+Yes — this project absolutely aligns with Freshpaint’s mission, tech stack, and domain. It’s not just a random project; it’s a strategic prototype of what their backend engineers likely build and improve every day.
+
+You're building something useful, extensible, and aligned — and that’s exactly what you'd want to present.
+
+
+
+[curl POST /event]  http request
+        ↓
+[handler: NewEventHandler()]
+        ↓
+[Sanitize payload using sanitize.Sanitize()]
+        ↓
+[Store to DB using storage.SaveEvent()]
+        ↓
+[Forward event using forwarder.ForwardEvent()]
+        ↓
+[Return JSON response to client] response
+
+3. Storage to Database
+
+  The sanitized input is sent to storage.SaveEvent()
+
+  That function handles the DB logic (calling INSERT INTO events (...))
+
+  But there’s a key step here:
+
+      Go doesn’t allow storing map[string]interface{} directly into Postgres
+
+      So in storage.go, it marshals the payload to JSON before inserting:
+
+payloadJSON, _ := json.Marshal(event.Payload)
+// Then insert payloadJSON (as []byte) into Postgres
+
+✅ Output: Row is stored in Postgres with sanitized JSON and timestamp
+📤 4. Forwarding Simulation
+
+    After successful DB insert, your event is passed to forwarder.ForwardEvent()
+
+    This just logs it for now (but could later hit a real endpoint):
+
+log.Printf("📤 Forwarding event ID %d (type: %s, sanitized: %v)", ...)
+
+✅ Output: Logged to console (or sent externally in Phase 3)
+

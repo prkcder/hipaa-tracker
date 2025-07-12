@@ -1,0 +1,9 @@
+{
+  "event_type": "user_signup",
+  "payload": {
+    "email": "secret@example.com",
+    "plan": "premium",
+    "ip_address": "192.168.1.1",
+    "referrer": "tiktok"
+  }
+}
