@@ -1,14 +1,27 @@
-# fields:
-#   - ssn
-#   - email
-#   - phone
-#   - full_name
-
-
-
 sensitive_fields:
-  - password
+  - name
+  - full_name
   - email
+  - phone
+  - fax
+  - address
+  - city
+  - state
+  - zipcode
   - ssn
+  - medical_record_number
+  - health_plan_beneficiary_number
+  - account_number
+  - certificate_license_number
+  - vehicle_identifiers
+  - device_identifiers
+  - url
+  - ip_address
+  - biometric_identifiers
+  - facial_photographs
+  - any_other_unique_id
+  - date_of_birth
+  - dob
   - token
+  - password
   - credit_card

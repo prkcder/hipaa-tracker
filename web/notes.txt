@@ -1,0 +1,114 @@
+
+
+
+original page.tsx:
+
+
+export default function Home() {
+  const defaultFormState = {
+    name: '',
+    email: '',
+    phone: '',
+    dob: '',
+    zipcode: '',
+    activity_type: '',
+    mrn: '',
+    insurance_id: '',
+    device_id: '',
+    timestamp: new Date().toISOString(),
+  }
+
+  const [form, setForm] = useState(defaultFormState);
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+
+    if (!form.name || !form.email || !form.activity_type) {
+      alert('Please fill out Name, Email, and Activity Type.')
+      return
+    }
+
+
+    const data = {
+      event_type: form.activity_type || 'activity', // fallback default
+      payload: {
+        // name: form.name,
+        // email: form.email,
+        ...form,
+        timestamp: new Date().toISOString(),
+      }
+    };
+
+    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
+
+    try {
+      const res = await fetch(`${BACKEND_URL}/event`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        const text = await res.text();
+        console.error('Server responded with error:', res.status, text);
+        alert('Server error: ' + text);
+        return;
+      }
+
+      alert('Event sent!');
+      setForm(defaultFormState);
+    } catch (err) {
+      console.error('Fetch error:', err);
+      if (err instanceof Error) {
+        alert('Fetch error: ' + err.message);
+      } else {
+        alert('An unknown error occurred');
+      }
+    } finally {
+      setLoading(false)
+    }
+  };
+
+  return (
+    <main className="p-6 max-w-md mx-auto">
+      <h1 className="text-2xl mb-4">Event Tracker</h1>
+      {/* <div>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input name="name" placeholder="Name" value={form.name} onChange={handleChange} />
+          <input name="email" type="email" required placeholder="Email" value={form.email} onChange={handleChange} />
+          <input name="phone" placeholder="Phone Number" onChange={handleChange} />
+          <input name="dob" type="date" placeholder="Date of Birth" onChange={handleChange} />
+          <input name="zipcode" placeholder="Zip Code" onChange={handleChange} />
+          <input name="mrn" placeholder="Medical Record Number" onChange={handleChange} />
+          <input name="insurance_id" placeholder="Insurance ID" onChange={handleChange} />
+          <input name="device_id" placeholder="Device ID" onChange={handleChange} />
+
+          <input name="activity_type" placeholder="Activity Type" value={form.activity_type} onChange={handleChange} />
+
+          <button 
+            type="submit" 
+            disabled={loading}
+            className="bg-blue-600 text-white px-4 py-2" 
+            >
+              {loading ? 'Submitting...' : 'Track Event'}
+          </button>
+
+        </form>
+      </div>   */}
+      <div>
+        <SubmitEvent />
+      </div>
+
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <h2 className="text-xl font-semibold mb-4">View Events</h2>
+        <ViewEvents />
+      </div>
+    </main>
+  );
+}

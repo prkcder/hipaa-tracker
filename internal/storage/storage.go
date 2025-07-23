@@ -8,7 +8,10 @@ import (
 	"github.com/freshpaint/hipaa-tracker/internal/models"
 )
 
-// SaveEvent stores a sanitized event into the database
+
+var SaveEventFunc = SaveEvent // for mocking in tests
+
+// stores a sanitized event into the database
 func SaveEvent(db *sql.DB, e *models.Event) error {
 
 	e.CreatedAt = time.Now()

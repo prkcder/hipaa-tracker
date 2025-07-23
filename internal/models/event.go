@@ -11,6 +11,6 @@ type Event struct {
 	EventType string `json:"event_type"`
 	Payload map[string]any `json:"payload"`
 	Sanitized bool `json:"sanitized"`
-	CreatedAt time.Time `json:"create_at"`
+	CreatedAt time.Time `json:"created_at"`
 }
 

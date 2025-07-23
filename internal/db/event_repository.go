@@ -9,7 +9,7 @@ import (
 )
 
 
-func GetAllEvents(db *sql.DB) ([]models.Event, error) {
+var  GetAllEvents = func(db *sql.DB) ([]models.Event, error) {
 
 	rows, err := db.Query(`
 		SELECT id, event_type, payload, sanitized, created_at
