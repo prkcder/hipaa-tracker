@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
 type Payload = Record<string, string | number | boolean | null | undefined>;
 
@@ -10,17 +10,17 @@ type Event = {
     sanitized: boolean
     created_at: string
     payload: Payload
-}
+};
 
 export default function ViewEvents() {
-    const [events, setEvents] = useState<Event[]>([])
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState<string | null>(null)
-    const [query, setQuery] = useState('')
-    const [showRedacted, setShowRedacted] = useState(true)
-    const [autoRefresh, setAutoRefresh] = useState(false)
-    const [refreshInterval, setRefreshInterval] = useState<NodeJS.Timeout | null>(null)
-    const [flags, setFlags] = useState<Record<number, boolean>>({})
+    const [events, setEvents] = useState<Event[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    const [query, setQuery] = useState('');
+    const [showRedacted, setShowRedacted] = useState(true);
+    const [autoRefresh, setAutoRefresh] = useState(false);
+    const [refreshInterval, setRefreshInterval] = useState<NodeJS.Timeout | null>(null);
+    const [flags, setFlags] = useState<Record<number, boolean>>({});
 
     // Load flags from localStorage
     useEffect(() => {
@@ -28,12 +28,12 @@ export default function ViewEvents() {
         if (saved) {
             setFlags(JSON.parse(saved))
         }
-    }, [])
+    }, []);
 
     // Persist flags when they change
     useEffect(() => {
         localStorage.setItem('flaggedEvents', JSON.stringify(flags))
-    }, [flags])
+    }, [flags]);
 
     const fetchEvents = async () => {
         try {
@@ -47,60 +47,60 @@ export default function ViewEvents() {
         } finally {
             setLoading(false)
         }
-    }
+    };
 
     useEffect(() => {
-        fetchEvents()
+        fetchEvents();
         if (autoRefresh) {
-            const interval = setInterval(fetchEvents, 5000)
-            setRefreshInterval(interval)
-            return () => clearInterval(interval)
+            const interval = setInterval(fetchEvents, 5000);
+            setRefreshInterval(interval);
+            return () => clearInterval(interval);
         }
         return () => {
-            if (refreshInterval) clearInterval(refreshInterval)
+            if (refreshInterval) clearInterval(refreshInterval);
         }
-    }, [autoRefresh])
+    }, [autoRefresh]);
 
     const filtered = events.filter((e) =>
         JSON.stringify(e).toLowerCase().includes(query.toLowerCase())
-    )
+    );
 
     const maybeRedact = (payload: Payload) => {
-        if (showRedacted) return payload
-        const redacted = { ...payload }
+        if (showRedacted) return payload;
+        const redacted = { ...payload };
         for (const key of ['email', 'phone', 'dob', 'mrn', 'insurance_id', 'device_id', 'zipcode']) {
             if (redacted[key]) redacted[key] = '🔒 REDACTED'
-        }
-        return redacted
-    }
+        };
+        return redacted;
+    };
 
     const copyJSON = (e: Event) => {
-        navigator.clipboard.writeText(JSON.stringify(e, null, 2))
-        alert('Copied JSON to clipboard!')
-    }
+        navigator.clipboard.writeText(JSON.stringify(e, null, 2));
+        alert('Copied JSON to clipboard!');
+    };
 
     const exportCSV = () => {
-        const headers = ['id', 'event_type', 'sanitized', 'created_at', 'payload']
+        const headers = ['id', 'event_type', 'sanitized', 'created_at', 'payload'];
         const rows = filtered.map((e) => [
             e.id,
             e.event_type,
             e.sanitized,
             new Date(e.created_at).toISOString(),
             JSON.stringify(maybeRedact(e.payload)).replace(/"/g, '""'),
-        ])
-        const csv = [headers.join(','), ...rows.map((r) => r.join(','))].join('\n')
-        const blob = new Blob([csv], { type: 'text/csv' })
-        const url = URL.createObjectURL(blob)
-        const a = document.createElement('a')
-        a.href = url
-        a.download = 'events.csv'
-        a.click()
-        URL.revokeObjectURL(url)
-    }
+        ]);
+        const csv = [headers.join(','), ...rows.map((r) => r.join(','))].join('\n');
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'events.csv';
+        a.click();
+        URL.revokeObjectURL(url);
+    };
 
     const toggleFlag = (id: number) => {
-        setFlags((prev) => ({ ...prev, [id]: !prev[id] }))
-    }
+        setFlags((prev) => ({ ...prev, [id]: !prev[id] }));
+    };
 
     return (
         <div className="space-y-6 mt-6">
@@ -161,5 +161,5 @@ export default function ViewEvents() {
                 ))
             )}
         </div>
-    )
+    );
 }

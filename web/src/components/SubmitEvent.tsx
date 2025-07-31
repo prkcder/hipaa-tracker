@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
+import { useState } from 'react';
 
 const defaultFormState = {
     name: '',
@@ -13,7 +13,7 @@ const defaultFormState = {
     insurance_id: '',
     device_id: '',
     timestamp: new Date().toISOString(),
-}
+};
 
 export default function SubmitEvent() {
     const [form, setForm] = useState(defaultFormState);
@@ -29,7 +29,7 @@ export default function SubmitEvent() {
         if (!form.name || !form.email || !form.activity_type) {
             alert('Please fill out Name, Email, and Activity Type.')
             return
-        }
+        };
 
         const data = {
             event_type: form.activity_type || 'activity', // fallback default
@@ -55,7 +55,7 @@ export default function SubmitEvent() {
                 console.error('Server responded with error:', res.status, text);
                 alert('Server error: ' + text);
                 return;
-            }
+            };
 
             alert('Event sent!');
             setForm(defaultFormState);
@@ -67,7 +67,7 @@ export default function SubmitEvent() {
                 alert('An unknown error occurred');
             }
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     };
 
@@ -95,5 +95,5 @@ export default function SubmitEvent() {
                 {loading ? 'Submitting...' : 'Track Event'}
             </button>
         </form>
-    )
+    );
 }
