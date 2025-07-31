@@ -1,0 +1,12 @@
+# Ensure Go files are recognized
+*.go linguist-language=Go
+
+# Treat frontend/node-related files as vendored (optional but helps rebalance)
+web/node_modules/** linguist-vendored
+web/.next/** linguist-vendored
+web/dist/** linguist-vendored
+*.min.js linguist-vendored
+
+# Ignore compiled assets
+*.css linguist-vendored
+*.map linguist-vendored
