@@ -61,6 +61,7 @@ export default function ViewEvents() {
         }
     }, [autoRefresh]);
 
+
     const filtered = events.filter((e) =>
         JSON.stringify(e).toLowerCase().includes(query.toLowerCase())
     );
@@ -106,7 +107,10 @@ export default function ViewEvents() {
         <div className="space-y-6 mt-6">
             <div className="flex flex-col sm:flex-row gap-4 items-center">
                 <input
-                    className="border px-3 py-1 rounded w-full sm:w-1/2"
+                    className="border dark:border-gray-600 px-3 py-1 rounded w-full sm:w-1/2 
+                            text-gray-900 dark:text-white 
+                            bg-white dark:bg-gray-800 
+                            placeholder-gray-400 dark:placeholder-gray-500"
                     placeholder="Search by name, email, etc..."
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
@@ -132,7 +136,8 @@ export default function ViewEvents() {
                 <p>No matching events found.</p>
             ) : (
                 filtered.map((event) => (
-                    <div key={event.id} className="p-4 border rounded shadow-sm bg-white relative">
+                    <div key={event.id} className="p-4 border dark:border-gray-600 rounded shadow-sm bg-gray-50 dark:bg-gray-800 relative"
+                    >
                         <div className="absolute top-2 right-2 flex gap-2">
                             <button
                                 onClick={() => copyJSON(event)}
@@ -153,9 +158,13 @@ export default function ViewEvents() {
                         <p><strong>Timestamp:</strong> {new Date(event.created_at).toLocaleString()}</p>
                         <details className="mt-2">
                             <summary className="cursor-pointer text-blue-600">Payload</summary>
-                            <pre className="bg-gray-100 p-2 rounded mt-2 text-sm overflow-x-auto">
+                            {/* <pre className="bg-gray-100 p-2 rounded mt-2 text-sm overflow-x-auto">
+                                {JSON.stringify(maybeRedact(event.payload), null, 2)}
+                            </pre> */}
+                            <pre className="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-3 rounded mt-2 text-sm overflow-x-auto border dark:border-gray-600">
                                 {JSON.stringify(maybeRedact(event.payload), null, 2)}
                             </pre>
+
                         </details>
                     </div>
                 ))

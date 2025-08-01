@@ -9,7 +9,7 @@ const defaultFormState = {
     dob: '',
     zipcode: '',
     activity_type: '',
-    mrn: '',
+    medical_record_number: '',
     insurance_id: '',
     device_id: '',
     timestamp: new Date().toISOString(),
@@ -72,28 +72,106 @@ export default function SubmitEvent() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow space-y-4">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Submit Event</h2>
-            {Object.entries(defaultFormState).map(([key, _]) => (
+        // <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow space-y-4">
+        //     <h2 className="text-2xl font-semibold text-center text-gray-900 dark:text-white">Submit Event</h2>
+
+
+        //     {/* {Object.entries(defaultFormState).map(([key]) => (
+        //         key !== 'timestamp' && (
+        //             <input
+        //                 key={key}
+        //                 name={key}
+        //                 type={key === 'dob' ? 'date' : key === 'email' ? 'email' : 'text'}
+        //                 placeholder={key.replace('/_/g', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+        //                 value={form[key as keyof typeof form]}
+        //                 onChange={handleChange}
+        //                 className="w-full border dark:border-gray-600 rounded px-3 py-2 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+        //             />
+        //         )
+        //     ))} */}
+        //     {/* 
+        //     {Object.entries(defaultFormState).map(([key]) => (
+        //         key !== 'timestamp' && (
+        //             <div key={key} className="space-y-1">
+        //                 <label htmlFor={key} className="block text-sm font-medium text-gray-700 dark:text-white">
+        //                     {key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+        //                 </label>
+        //                 <input
+        //                     id={key}
+        //                     name={key}
+        //                     type={key === 'dob' ? 'date' : key === 'email' ? 'email' : 'text'}
+        //                     value={form[key as keyof typeof form]}
+        //                     onChange={handleChange}
+        //                     className="w-full border dark:border-gray-600 rounded px-3 py-2 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+        //                 />
+        //             </div>
+        //         )
+        //     ))} */}
+
+        //     {Object.entries(defaultFormState).map(([key]) => (
+        //         key !== 'timestamp' && (
+        //             <div key={key} className="space-y-1">
+        //                 <label htmlFor={key} className="block text-sm font-medium text-gray-700 dark:text-white">
+        //                     {key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+        //                 </label>
+        //                 <input
+        //                     id={key}
+        //                     name={key}
+        //                     type={key === 'dob' ? 'date' : key === 'email' ? 'email' : 'text'}
+        //                     value={form[key as keyof typeof form]}
+        //                     onChange={handleChange}
+        //                     className="w-full border dark:border-gray-600 rounded px-3 py-2 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+        //                 />
+        //             </div>
+        //         )
+        //     ))}
+
+
+
+        //     <button
+        //         type="submit"
+        //         disabled={loading}
+        //         className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded"
+        //     >
+        //         {loading ? 'Submitting...' : 'Track Event'}
+        //     </button>
+        // </form>
+        <form
+            onSubmit={handleSubmit}
+            className="max-w-md mx-auto bg-white dark:bg-gray-900 p-6 rounded-lg shadow space-y-6"
+        >
+            <h2 className="text-2xl font-bold text-center text-gray-900 dark:text-white">Submit Event</h2>
+
+            {Object.entries(defaultFormState).map(([key]) => (
                 key !== 'timestamp' && (
-                    <input
-                        key={key}
-                        name={key}
-                        type={key === 'dob' ? 'date' : key === 'email' ? 'email' : 'text'}
-                        placeholder={key.replace('_', ' ').toUpperCase()}
-                        value={form[key as keyof typeof form]}
-                        onChange={handleChange}
-                        className="w-full border dark:border-gray-600 rounded px-3 py-2 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
-                    />
+                    <div key={key} className="flex flex-col">
+                        <label
+                            htmlFor={key}
+                            className="mb-1 text-base font-medium text-gray-800 dark:text-gray-100"
+                        >
+                            {key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                        </label>
+                        <input
+                            id={key}
+                            name={key}
+                            type={key === 'dob' ? 'date' : key === 'email' ? 'email' : 'text'}
+                            value={form[key as keyof typeof form]}
+                            onChange={handleChange}
+                            className="w-full border dark:border-gray-600 rounded px-3 py-2 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+                        />
+                    </div>
                 )
             ))}
+
             <button
                 type="submit"
                 disabled={loading}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg px-4 py-2 rounded"
             >
                 {loading ? 'Submitting...' : 'Track Event'}
             </button>
         </form>
+
+
     );
 }
