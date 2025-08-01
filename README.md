@@ -16,6 +16,7 @@ The goal is to learn by building something similar to what Support/Integration E
 ## Project Structure
 
 ```
+Old Planning Tree Structure
 hipaa-tracker/
 ├── cmd/
 │   └── main.go                    # Entry point
@@ -43,7 +44,7 @@ hipaa-tracker/
 └── README.md
 
 
-
+New Tree Structure
 hipaa-tracker/
 ├── Dockerfile
 ├── README.md
@@ -123,6 +124,18 @@ hipaa-tracker/
 
 ## 🧪 Running Locally
 
+### Prerequisite
+
+Before running the application, you need to set up your environment variables:
+
+Create your .env file:
+```bash
+cp .env.example .env
+```
+
+Update the .env file with your configuration:
+Open the .env file and update the values according to your setup. The file should contain database credentials and other configuration variables as shown in .env.example.
+
 ### Option 1: Docker Compose
 
 ```bash
@@ -137,7 +150,7 @@ This sets up the Go API and Postgres database. You can then access:
 ### Option 2: Run manually
 
 1. Ensure Postgres is running
-2. Set your `.env` variables
+2. Set your `.env` variables (see Prerequisites above)
 3. Run:
 ```bash
 go run cmd/main.go
