@@ -13,7 +13,7 @@ type Event = {
 export default function Dashboard() {
 
     const [events, setEvents] = useState<Event[]>([]);
-
+    const [flaggedCount, setFlaggedCount] = useState(0);
 
     useEffect(() => {
         fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/events')
@@ -22,11 +22,15 @@ export default function Dashboard() {
             .catch(console.error)
     }, []);
 
+    useEffect(() => {
+        // Safe: only runs in the browser
+        const flagged = JSON.parse(localStorage.getItem('flaggedEvents') || '{}');
+        const count = Object.values(flagged).filter(Boolean).length;
+        setFlaggedCount(count);
+    }, []);
+
     const total = events.length;
     const sanitized = events.filter((e) => e.sanitized).length;
-    const flagged = JSON.parse(localStorage.getItem('flaggedEvents') || '{}');
-    const flaggedCount = Object.values(flagged).filter(Boolean).length;
-
 
 
     return (
