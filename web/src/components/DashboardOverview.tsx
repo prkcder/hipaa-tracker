@@ -56,22 +56,22 @@ export default function Dashboard() {
             {/* Recent Events Table */}
             <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
                 <h3 className="text-lg font-semibold mb-2">Recent Events</h3>
-                <table className="w-full text-sm">
+                <table className="w-full text-sm table-fixed">
                     <thead>
-                        <tr>
-                            <th className="text-left">ID</th>
-                            <th>Type</th>
-                            <th>Sanitized</th>
-                            <th>Time</th>
+                        <tr className="bg-gray-100 dark:bg-gray-700">
+                            <th className="text-left px-4 py-2 w-1/12">ID</th>
+                            <th className="text-left px-4 py-2 w-1/12">Type</th>
+                            <th className="text-left px-4 py-2 w-1/12">Sanitized</th>
+                            <th className="text-left px-4 py-2 w-1/12">Time</th>
                         </tr>
                     </thead>
                     <tbody>
                         {events.slice(0, 5).map((e) => (
-                            <tr key={e.id}>
-                                <td>{e.id}</td>
-                                <td>{e.event_type}</td>
-                                <td>{e.sanitized ? 'Yes' : 'No'}</td>
-                                <td>{new Date(e.created_at).toLocaleString()}</td>
+                            <tr key={e.id}  className="border-t border-gray-200 dark:border-gray-700">
+                                <td className="px-4 py-2">{e.id}</td>
+                                <td className="px-4 py-2">{e.event_type}</td>
+                                <td className="px-4 py-2">{e.sanitized ? 'Yes' : 'No'}</td>
+                                <td className="px-4 py-2">{new Date(e.created_at).toLocaleString()}</td>
                             </tr>
                         ))}
                     </tbody>

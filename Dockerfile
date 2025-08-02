@@ -59,22 +59,6 @@ COPY . .
 # Build
 RUN go build -o /app/main ./cmd/main.go
 
-# ======================
-# Development Stage 
-# ======================
-# FROM backend-builder AS dev
-
-# # Install air and frontend dev tools
-# RUN go install github.com/cosmtrek/air@latest && \
-#     apk add --no-cache curl
-
-# # Set working directory to where your main.go is
-# WORKDIR /app/cmd
-
-# # Start air (will watch for changes)
-# CMD ["air"]
-# # Start both backend (air) and frontend (vite) dev servers
-# CMD ["sh", "-c", "cd web && npm run dev & air -c .air.toml"]
 
 # Final stage
 FROM alpine:latest
