@@ -1,10 +1,12 @@
 # Makefile
 
 # Default target
-start:
+start-build:
 	docker compose -f docker-compose.dev.yml up --build
 
-start-detached:
+start-up:
+	docker compose -f docker-compose.dev.yml up -d
+start:
 	docker compose -f docker-compose.dev.yml up --build -d
 
 stop:
