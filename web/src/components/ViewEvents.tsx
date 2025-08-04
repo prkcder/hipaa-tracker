@@ -21,6 +21,20 @@ export default function ViewEvents() {
     const [autoRefresh, setAutoRefresh] = useState(false);
     const [refreshInterval, setRefreshInterval] = useState<NodeJS.Timeout | null>(null);
     const [flags, setFlags] = useState<Record<number, boolean>>({});
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;
+
+    const filter = events.filter((e) =>
+        JSON.stringify(e).toLowerCase().includes(query.toLowerCase())
+    );
+
+    const totalPages = Math.ceil(filter.length / itemsPerPage);
+
+    const paginated = filter.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+    )
+
 
     // Load flags from localStorage
     useEffect(() => {
@@ -61,17 +75,12 @@ export default function ViewEvents() {
         }
     }, [autoRefresh]);
 
-
-    const filtered = events.filter((e) =>
-        JSON.stringify(e).toLowerCase().includes(query.toLowerCase())
-    );
-
     const maybeRedact = (payload: Payload) => {
         if (showRedacted) return payload;
         const redacted = { ...payload };
-        for (const key of ['email', 'phone', 'dob', 'mrn', 'insurance_id', 'device_id', 'zipcode']) {
-            if (redacted[key]) redacted[key] = '🔒 REDACTED'
-        };
+        // for (const key of ['email', 'phone', 'dob', 'mrn', 'insurance_id', 'device_id', 'zipcode']) {
+        //     if (redacted[key]) redacted[key] = '🔒 REDACTED'
+        // };
         return redacted;
     };
 
@@ -82,7 +91,7 @@ export default function ViewEvents() {
 
     const exportCSV = () => {
         const headers = ['id', 'event_type', 'sanitized', 'created_at', 'payload'];
-        const rows = filtered.map((e) => [
+        const rows = filter.map((e) => [
             e.id,
             e.event_type,
             e.sanitized,
@@ -108,9 +117,9 @@ export default function ViewEvents() {
             <div className="flex flex-col sm:flex-row gap-4 items-center">
                 <input
                     className="border dark:border-gray-600 px-3 py-1 rounded w-full sm:w-1/2 
-                            text-gray-900 dark:text-white 
-                            bg-white dark:bg-gray-800 
-                            placeholder-gray-400 dark:placeholder-gray-500"
+              text-gray-900 dark:text-white 
+              bg-white dark:bg-gray-800 
+              placeholder-gray-400 dark:placeholder-gray-500"
                     placeholder="Search by name, email, etc..."
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
@@ -119,10 +128,10 @@ export default function ViewEvents() {
                     <input type="checkbox" checked={autoRefresh} onChange={() => setAutoRefresh(!autoRefresh)} />
                     Auto-refresh
                 </label>
-                <label className="flex items-center gap-2 text-sm">
+                {/* <label className="flex items-center gap-2 text-sm">
                     <input type="checkbox" checked={showRedacted} onChange={() => setShowRedacted(!showRedacted)} />
                     Show raw
-                </label>
+                </label> */}
                 <button onClick={exportCSV} className="text-sm bg-green-600 text-white px-3 py-1 rounded">
                     📤 Export CSV
                 </button>
@@ -132,42 +141,71 @@ export default function ViewEvents() {
                 <p>Loading events...</p>
             ) : error ? (
                 <p className="text-red-500">{error}</p>
-            ) : filtered.length === 0 ? (
+            ) : filter.length === 0 ? (
                 <p>No matching events found.</p>
             ) : (
-                filtered.map((event) => (
-                    <div key={event.id} className="p-4 border dark:border-gray-600 rounded shadow-sm bg-gray-50 dark:bg-gray-800 relative"
-                    >
-                        <div className="absolute top-2 right-2 flex gap-2">
-                            <button
-                                onClick={() => copyJSON(event)}
-                                className="text-xs text-blue-600 hover:underline"
-                            >
-                                📋 Copy JSON
-                            </button>
-                            <button
-                                onClick={() => toggleFlag(event.id)}
-                                className={`text-xs ${flags[event.id] ? 'text-red-600' : 'text-gray-400'}`}
-                            >
-                                🚩 {flags[event.id] ? 'Flagged' : 'Flag'}
-                            </button>
+                <>
+                    {paginated.map((event) => (
+                        <div key={event.id} className="p-4 border dark:border-gray-600 rounded shadow-sm bg-gray-50 dark:bg-gray-800 relative">
+                            <div className="absolute top-2 right-2 flex gap-2">
+                                <button
+                                    onClick={() => copyJSON(event)}
+                                    className="text-xs text-blue-600 hover:underline"
+                                >
+                                    📋 Copy JSON
+                                </button>
+                                <button
+                                    onClick={() => toggleFlag(event.id)}
+                                    className={`text-xs ${flags[event.id] ? 'text-red-600' : 'text-gray-400'}`}
+                                >
+                                    🚩 {flags[event.id] ? 'Flagged' : 'Flag'}
+                                </button>
+                            </div>
+                            <p><strong>ID:</strong> {event.id}</p>
+                            <p><strong>Type:</strong> {event.event_type}</p>
+                            <p><strong>Sanitized:</strong> {event.sanitized ? 'Yes' : 'No'}</p>
+                            <p><strong>Timestamp:</strong> {new Date(event.created_at).toLocaleString()}</p>
+                            <details className="mt-2">
+                                <summary className="cursor-pointer text-blue-600">Payload</summary>
+                                <pre className="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-3 rounded mt-2 text-sm overflow-x-auto border dark:border-gray-600">
+                                    {JSON.stringify(maybeRedact(event.payload), null, 2)}
+                                </pre>
+                            </details>
                         </div>
-                        <p><strong>ID:</strong> {event.id}</p>
-                        <p><strong>Type:</strong> {event.event_type}</p>
-                        <p><strong>Sanitized:</strong> {event.sanitized ? 'Yes' : 'No'}</p>
-                        <p><strong>Timestamp:</strong> {new Date(event.created_at).toLocaleString()}</p>
-                        <details className="mt-2">
-                            <summary className="cursor-pointer text-blue-600">Payload</summary>
-                            {/* <pre className="bg-gray-100 p-2 rounded mt-2 text-sm overflow-x-auto">
-                                {JSON.stringify(maybeRedact(event.payload), null, 2)}
-                            </pre> */}
-                            <pre className="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-3 rounded mt-2 text-sm overflow-x-auto border dark:border-gray-600">
-                                {JSON.stringify(maybeRedact(event.payload), null, 2)}
-                            </pre>
+                    ))}
 
-                        </details>
+                    {/* Pagination Controls */}
+                    <div className="flex justify-center items-center mt-6 space-x-2 text-sm">
+                        <button
+                            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                            className="px-2 py-1 rounded bg-gray-200 dark:bg-gray-700 disabled:opacity-50"
+                            disabled={currentPage === 1}
+                        >
+                            ◀
+                        </button>
+
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                            <button
+                                key={page}
+                                onClick={() => setCurrentPage(page)}
+                                className={`px-3 py-1 rounded ${currentPage === page
+                                    ? 'bg-blue-600 text-white'
+                                    : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'
+                                    }`}
+                            >
+                                {page}
+                            </button>
+                        ))}
+
+                        <button
+                            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+                            className="px-2 py-1 rounded bg-gray-200 dark:bg-gray-700 disabled:opacity-50"
+                            disabled={currentPage === totalPages}
+                        >
+                            ▶
+                        </button>
                     </div>
-                ))
+                </>
             )}
         </div>
     );
