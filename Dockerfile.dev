@@ -1,0 +1,35 @@
+# ======================
+# Frontend Dev
+# ======================
+FROM node:22-alpine AS frontend-dev
+WORKDIR /app/web
+
+COPY web/package*.json ./
+RUN npm install
+
+COPY web/ ./
+
+EXPOSE 3000
+
+
+# ======================
+# Backend Dev
+# ======================
+FROM golang:1.24-alpine AS backend-dev
+WORKDIR /app
+
+RUN apk add --no-cache git curl
+RUN go install github.com/air-verse/air@latest
+ENV PATH="/go/bin:$PATH"
+
+COPY . .
+
+WORKDIR /app/cmd
+
+EXPOSE 8080
+CMD ["air", "-c", ".air.toml"]
+
+
+
+
+

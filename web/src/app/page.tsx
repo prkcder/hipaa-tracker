@@ -4,10 +4,10 @@ import { useState } from 'react'
 import SubmitEvent from '@/components/SubmitEvent';
 import ViewEvents from '@/components/ViewEvents';
 import DashboardOverview from '@/components/DashboardOverview';
+import TrackerScanner from '@/components/TrackerScanner';
 
 
-
-type TabType = 'dashboard' | 'submit' | 'view';
+type TabType = 'dashboard' | 'submit' | 'view' | 'tracker';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<TabType>('dashboard');
@@ -21,7 +21,8 @@ export default function Home() {
         return <SubmitEvent />
       case 'view':
         return <ViewEvents />
-
+      case 'tracker':
+        return <TrackerScanner />
     }
   };
 
@@ -41,6 +42,9 @@ export default function Home() {
           </button>
           <button onClick={() => setActiveTab('view')} className={`block w-full text-left px-3 py-2 rounded ${activeTab === 'view' ? 'bg-blue-600 text-white' : 'hover:bg-gray-200 dark:hover:bg-gray-700'}`}>
             📁 View Events
+          </button>
+          <button onClick={() => setActiveTab('tracker')} className={`block w-full text-left px-3 py-2 rounded ${activeTab === 'tracker' ? 'bg-blue-600 text-white' : 'hover:bg-gray-200 dark:hover:bg-gray-700'}`}>
+            🌐 Web Tracker
           </button>
         </nav>
       </aside>

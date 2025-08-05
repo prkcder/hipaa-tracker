@@ -13,7 +13,9 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func HealthHandler(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintln(w, "ok")
+    // fmt.Fprintln(w, "ok")
+    w.WriteHeader(http.StatusOK)
+    w.Write([]byte("ok"))
 }
 
 

@@ -7,3 +7,12 @@ CREATE TABLE IF NOT EXISTS events (
 );
 
 
+CREATE TABLE IF NOT EXISTS web_tracker_scans (
+    id SERIAL PRIMARY KEY,
+    scanned_url TEXT NOT NULL,
+    tracker_name TEXT NOT NULL,
+    tracker_domain TEXT NOT NULL,
+    risk_level TEXT NOT NULL,
+    page_url TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

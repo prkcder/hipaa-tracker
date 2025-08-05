@@ -1,0 +1,11 @@
+# .air.toml
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  cmd = "go build -buildvcs=false -o ./tmp/main ./main.go"
+  bin = "tmp/main"
+  full_bin = "tmp/main"
+
+[color]
+  main = "yellow"

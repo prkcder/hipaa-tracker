@@ -1,0 +1,1 @@
+{"version":3,"file":"scan.d.ts","sourceRoot":"","sources":["../scan.ts"],"names":[],"mappings":"AAyFA,MAAM,MAAM,aAAa,GAAG;IAC1B,GAAG,EAAE,MAAM,CAAC;IACZ,MAAM,EAAE,MAAM,CAAC;CAChB,CAAC;AAEF,wBAAsB,eAAe,CAAC,GAAG,EAAE,MAAM,GAAG,OAAO,CAAC,aAAa,EAAE,CAAC,CAuB3E"}

@@ -13,6 +13,12 @@ services:
       - .env
     depends_on:
       - db
+    logging:  # <-- Added logging config to test
+      driver: json-file
+      options:
+        max-size: "10m"  # Rotate at 10MB
+        max-file: "3"     # Keep 3 log files
+        tag: "backend"    # Adds service name to logs
 
   frontend:
     build:
@@ -27,6 +33,12 @@ services:
     command: ["npm", "run", "dev"]
     depends_on:
       - backend
+    logging:  
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "2"   
+        tag: "fronted'"  
 
   db:
     image: postgres:15-alpine
@@ -39,6 +51,12 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./scripts/seed_db.sql:/docker-entrypoint-initdb.d/seed_db.sql
+    logging:  
+      driver: json-file
+      options:
+        max-size: "20m"
+        max-file: "5"   
+        tag: "postgres"  
 
   adminer:
     image: adminer
@@ -47,6 +65,11 @@ services:
       - "8081:8080"
     depends_on:
       - db
+    logging:  
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "1" 
 
   pgweb:
     image: sosedoff/pgweb
@@ -56,6 +79,30 @@ services:
       - PGWEB_DATABASE_URL=postgres://user:password@db:5432/myapp?sslmode=disable
     depends_on:
       - db
+    logging:  
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "1" 
+
+  crawler:
+    build:
+      context: ./crawler
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4000:4000"
+    depends_on:
+      - backend
+    volumes:
+      - ./crawler:/app
+    # command: ["node", "dist/server.js"]
+    logging:  
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+        tag: "crawler"
+
 
 volumes:
   postgres_data:

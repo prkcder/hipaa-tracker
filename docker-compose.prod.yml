@@ -56,7 +56,22 @@ services:
     depends_on:
       - db
 
-
+  crawler:
+    build:
+      context: ./crawler
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    depends_on:
+      - backend
+    volumes:
+      - ./crawler:/app
+    logging:  
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+        tag: "crawler"
 
 volumes:
   postgres_data:

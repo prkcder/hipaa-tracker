@@ -22,7 +22,7 @@ const defaultFormState = {
     dob: '',
     zipcode: '',
     activity_type: '',
-    mrn: '',
+    medical_record_number: '',
     insurance_id: '',
     device_id: '',
     timestamp: new Date().toISOString()
@@ -82,46 +82,122 @@ function SubmitEvent() {
             setLoading(false);
         }
     };
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+    return(// <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow space-y-4">
+    //     <h2 className="text-2xl font-semibold text-center text-gray-900 dark:text-white">Submit Event</h2>
+    //     {/* {Object.entries(defaultFormState).map(([key]) => (
+    //         key !== 'timestamp' && (
+    //             <input
+    //                 key={key}
+    //                 name={key}
+    //                 type={key === 'dob' ? 'date' : key === 'email' ? 'email' : 'text'}
+    //                 placeholder={key.replace('/_/g', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+    //                 value={form[key as keyof typeof form]}
+    //                 onChange={handleChange}
+    //                 className="w-full border dark:border-gray-600 rounded px-3 py-2 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+    //             />
+    //         )
+    //     ))} */}
+    //     {/* 
+    //     {Object.entries(defaultFormState).map(([key]) => (
+    //         key !== 'timestamp' && (
+    //             <div key={key} className="space-y-1">
+    //                 <label htmlFor={key} className="block text-sm font-medium text-gray-700 dark:text-white">
+    //                     {key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+    //                 </label>
+    //                 <input
+    //                     id={key}
+    //                     name={key}
+    //                     type={key === 'dob' ? 'date' : key === 'email' ? 'email' : 'text'}
+    //                     value={form[key as keyof typeof form]}
+    //                     onChange={handleChange}
+    //                     className="w-full border dark:border-gray-600 rounded px-3 py-2 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+    //                 />
+    //             </div>
+    //         )
+    //     ))} */}
+    //     {Object.entries(defaultFormState).map(([key]) => (
+    //         key !== 'timestamp' && (
+    //             <div key={key} className="space-y-1">
+    //                 <label htmlFor={key} className="block text-sm font-medium text-gray-700 dark:text-white">
+    //                     {key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+    //                 </label>
+    //                 <input
+    //                     id={key}
+    //                     name={key}
+    //                     type={key === 'dob' ? 'date' : key === 'email' ? 'email' : 'text'}
+    //                     value={form[key as keyof typeof form]}
+    //                     onChange={handleChange}
+    //                     className="w-full border dark:border-gray-600 rounded px-3 py-2 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+    //                 />
+    //             </div>
+    //         )
+    //     ))}
+    //     <button
+    //         type="submit"
+    //         disabled={loading}
+    //         className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded"
+    //     >
+    //         {loading ? 'Submitting...' : 'Track Event'}
+    //     </button>
+    // </form>
+    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
         onSubmit: handleSubmit,
-        className: "bg-white dark:bg-gray-900 p-6 rounded-lg shadow space-y-4",
+        className: "max-w-md mx-auto bg-white dark:bg-gray-900 p-6 rounded-lg shadow space-y-6",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                className: "text-xl font-semibold text-gray-900 dark:text-white",
+                className: "text-2xl font-bold text-center text-gray-900 dark:text-white",
                 children: "Submit Event"
             }, void 0, false, {
                 fileName: "[project]/src/components/SubmitEvent.tsx",
-                lineNumber: 76,
+                lineNumber: 143,
                 columnNumber: 13
             }, this),
-            Object.entries(defaultFormState).map(([key, _])=>key !== 'timestamp' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                    name: key,
-                    type: key === 'dob' ? 'date' : key === 'email' ? 'email' : 'text',
-                    placeholder: key.replace('_', ' ').toUpperCase(),
-                    value: form[key],
-                    onChange: handleChange,
-                    className: "w-full border dark:border-gray-600 rounded px-3 py-2 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
-                }, key, false, {
+            Object.entries(defaultFormState).map(([key])=>key !== 'timestamp' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex flex-col",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                            htmlFor: key,
+                            className: "mb-1 text-base font-medium text-gray-800 dark:text-gray-100",
+                            children: key.replace(/_/g, ' ').replace(/\b\w/g, (l)=>l.toUpperCase())
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/SubmitEvent.tsx",
+                            lineNumber: 148,
+                            columnNumber: 25
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                            id: key,
+                            name: key,
+                            type: key === 'dob' ? 'date' : key === 'email' ? 'email' : 'text',
+                            value: form[key],
+                            onChange: handleChange,
+                            className: "w-full border dark:border-gray-600 rounded px-3 py-2 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/SubmitEvent.tsx",
+                            lineNumber: 154,
+                            columnNumber: 25
+                        }, this)
+                    ]
+                }, key, true, {
                     fileName: "[project]/src/components/SubmitEvent.tsx",
-                    lineNumber: 79,
+                    lineNumber: 147,
                     columnNumber: 21
                 }, this)),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                 type: "submit",
                 disabled: loading,
-                className: "bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded",
+                className: "w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg px-4 py-2 rounded",
                 children: loading ? 'Submitting...' : 'Track Event'
             }, void 0, false, {
                 fileName: "[project]/src/components/SubmitEvent.tsx",
-                lineNumber: 90,
+                lineNumber: 166,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/SubmitEvent.tsx",
-        lineNumber: 75,
+        lineNumber: 139,
         columnNumber: 9
-    }, this);
+    }, this));
 }
 _s(SubmitEvent, "ejr6In4S+75DOP9OdS88MNIvx2Q=");
 _c = SubmitEvent;
@@ -156,6 +232,11 @@ function ViewEvents() {
     const [autoRefresh, setAutoRefresh] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [refreshInterval, setRefreshInterval] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [flags, setFlags] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({});
+    const [currentPage, setCurrentPage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(1);
+    const itemsPerPage = 5;
+    const filter = events.filter((e)=>JSON.stringify(e).toLowerCase().includes(query.toLowerCase()));
+    const totalPages = Math.ceil(filter.length / itemsPerPage);
+    const paginated = filter.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
     // Load flags from localStorage
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ViewEvents.useEffect": ()=>{
@@ -205,24 +286,14 @@ function ViewEvents() {
     }["ViewEvents.useEffect"], [
         autoRefresh
     ]);
-    const filtered = events.filter((e)=>JSON.stringify(e).toLowerCase().includes(query.toLowerCase()));
     const maybeRedact = (payload)=>{
         if (showRedacted) return payload;
         const redacted = {
             ...payload
         };
-        for (const key of [
-            'email',
-            'phone',
-            'dob',
-            'mrn',
-            'insurance_id',
-            'device_id',
-            'zipcode'
-        ]){
-            if (redacted[key]) redacted[key] = '🔒 REDACTED';
-        }
-        ;
+        // for (const key of ['email', 'phone', 'dob', 'mrn', 'insurance_id', 'device_id', 'zipcode']) {
+        //     if (redacted[key]) redacted[key] = '🔒 REDACTED'
+        // };
         return redacted;
     };
     const copyJSON = (e)=>{
@@ -237,7 +308,7 @@ function ViewEvents() {
             'created_at',
             'payload'
         ];
-        const rows = filtered.map((e)=>[
+        const rows = filter.map((e)=>[
                 e.id,
                 e.event_type,
                 e.sanitized,
@@ -273,13 +344,13 @@ function ViewEvents() {
                 className: "flex flex-col sm:flex-row gap-4 items-center",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                        className: "border px-3 py-1 rounded w-full sm:w-1/2",
+                        className: "border dark:border-gray-600 px-3 py-1 rounded w-full sm:w-1/2  text-gray-900 dark:text-white  bg-white dark:bg-gray-800  placeholder-gray-400 dark:placeholder-gray-500",
                         placeholder: "Search by name, email, etc...",
                         value: query,
                         onChange: (e)=>setQuery(e.target.value)
                     }, void 0, false, {
                         fileName: "[project]/src/components/ViewEvents.tsx",
-                        lineNumber: 108,
+                        lineNumber: 118,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
@@ -291,33 +362,14 @@ function ViewEvents() {
                                 onChange: ()=>setAutoRefresh(!autoRefresh)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/ViewEvents.tsx",
-                                lineNumber: 115,
+                                lineNumber: 128,
                                 columnNumber: 21
                             }, this),
                             "Auto-refresh"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/ViewEvents.tsx",
-                        lineNumber: 114,
-                        columnNumber: 17
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                        className: "flex items-center gap-2 text-sm",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                type: "checkbox",
-                                checked: showRedacted,
-                                onChange: ()=>setShowRedacted(!showRedacted)
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/ViewEvents.tsx",
-                                lineNumber: 119,
-                                columnNumber: 21
-                            }, this),
-                            "Show raw"
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/components/ViewEvents.tsx",
-                        lineNumber: 118,
+                        lineNumber: 127,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -326,174 +378,218 @@ function ViewEvents() {
                         children: "📤 Export CSV"
                     }, void 0, false, {
                         fileName: "[project]/src/components/ViewEvents.tsx",
-                        lineNumber: 122,
+                        lineNumber: 135,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/ViewEvents.tsx",
-                lineNumber: 107,
+                lineNumber: 117,
                 columnNumber: 13
             }, this),
             loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                 children: "Loading events..."
             }, void 0, false, {
                 fileName: "[project]/src/components/ViewEvents.tsx",
-                lineNumber: 128,
+                lineNumber: 141,
                 columnNumber: 17
             }, this) : error ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                 className: "text-red-500",
                 children: error
             }, void 0, false, {
                 fileName: "[project]/src/components/ViewEvents.tsx",
-                lineNumber: 130,
+                lineNumber: 143,
                 columnNumber: 17
-            }, this) : filtered.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+            }, this) : filter.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                 children: "No matching events found."
             }, void 0, false, {
                 fileName: "[project]/src/components/ViewEvents.tsx",
-                lineNumber: 132,
+                lineNumber: 145,
                 columnNumber: 17
-            }, this) : filtered.map((event)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "p-4 border rounded shadow-sm bg-white relative",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "absolute top-2 right-2 flex gap-2",
+            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                children: [
+                    paginated.map((event)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "p-4 border dark:border-gray-600 rounded shadow-sm bg-gray-50 dark:bg-gray-800 relative",
                             children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    onClick: ()=>copyJSON(event),
-                                    className: "text-xs text-blue-600 hover:underline",
-                                    children: "📋 Copy JSON"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/ViewEvents.tsx",
-                                    lineNumber: 137,
-                                    columnNumber: 29
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    onClick: ()=>toggleFlag(event.id),
-                                    className: `text-xs ${flags[event.id] ? 'text-red-600' : 'text-gray-400'}`,
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "absolute top-2 right-2 flex gap-2",
                                     children: [
-                                        "🚩 ",
-                                        flags[event.id] ? 'Flagged' : 'Flag'
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: ()=>copyJSON(event),
+                                            className: "text-xs text-blue-600 hover:underline",
+                                            children: "📋 Copy JSON"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/ViewEvents.tsx",
+                                            lineNumber: 151,
+                                            columnNumber: 33
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            onClick: ()=>toggleFlag(event.id),
+                                            className: `text-xs ${flags[event.id] ? 'text-red-600' : 'text-gray-400'}`,
+                                            children: [
+                                                "🚩 ",
+                                                flags[event.id] ? 'Flagged' : 'Flag'
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/components/ViewEvents.tsx",
+                                            lineNumber: 157,
+                                            columnNumber: 33
+                                        }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/ViewEvents.tsx",
-                                    lineNumber: 143,
-                                    columnNumber: 29
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/components/ViewEvents.tsx",
-                            lineNumber: 136,
-                            columnNumber: 25
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
-                                    children: "ID:"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/ViewEvents.tsx",
                                     lineNumber: 150,
-                                    columnNumber: 28
-                                }, this),
-                                " ",
-                                event.id
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/components/ViewEvents.tsx",
-                            lineNumber: 150,
-                            columnNumber: 25
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
-                                    children: "Type:"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/ViewEvents.tsx",
-                                    lineNumber: 151,
-                                    columnNumber: 28
-                                }, this),
-                                " ",
-                                event.event_type
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/components/ViewEvents.tsx",
-                            lineNumber: 151,
-                            columnNumber: 25
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
-                                    children: "Sanitized:"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/ViewEvents.tsx",
-                                    lineNumber: 152,
-                                    columnNumber: 28
-                                }, this),
-                                " ",
-                                event.sanitized ? 'Yes' : 'No'
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/components/ViewEvents.tsx",
-                            lineNumber: 152,
-                            columnNumber: 25
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
-                                    children: "Timestamp:"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/ViewEvents.tsx",
-                                    lineNumber: 153,
-                                    columnNumber: 28
-                                }, this),
-                                " ",
-                                new Date(event.created_at).toLocaleString()
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/components/ViewEvents.tsx",
-                            lineNumber: 153,
-                            columnNumber: 25
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("details", {
-                            className: "mt-2",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("summary", {
-                                    className: "cursor-pointer text-blue-600",
-                                    children: "Payload"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/ViewEvents.tsx",
-                                    lineNumber: 155,
                                     columnNumber: 29
                                 }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("pre", {
-                                    className: "bg-gray-100 p-2 rounded mt-2 text-sm overflow-x-auto",
-                                    children: JSON.stringify(maybeRedact(event.payload), null, 2)
-                                }, void 0, false, {
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                            children: "ID:"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/ViewEvents.tsx",
+                                            lineNumber: 164,
+                                            columnNumber: 32
+                                        }, this),
+                                        " ",
+                                        event.id
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/src/components/ViewEvents.tsx",
-                                    lineNumber: 156,
+                                    lineNumber: 164,
+                                    columnNumber: 29
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                            children: "Type:"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/ViewEvents.tsx",
+                                            lineNumber: 165,
+                                            columnNumber: 32
+                                        }, this),
+                                        " ",
+                                        event.event_type
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/ViewEvents.tsx",
+                                    lineNumber: 165,
+                                    columnNumber: 29
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                            children: "Sanitized:"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/ViewEvents.tsx",
+                                            lineNumber: 166,
+                                            columnNumber: 32
+                                        }, this),
+                                        " ",
+                                        event.sanitized ? 'Yes' : 'No'
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/ViewEvents.tsx",
+                                    lineNumber: 166,
+                                    columnNumber: 29
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
+                                            children: "Timestamp:"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/ViewEvents.tsx",
+                                            lineNumber: 167,
+                                            columnNumber: 32
+                                        }, this),
+                                        " ",
+                                        new Date(event.created_at).toLocaleString()
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/ViewEvents.tsx",
+                                    lineNumber: 167,
+                                    columnNumber: 29
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("details", {
+                                    className: "mt-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("summary", {
+                                            className: "cursor-pointer text-blue-600",
+                                            children: "Payload"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/ViewEvents.tsx",
+                                            lineNumber: 169,
+                                            columnNumber: 33
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("pre", {
+                                            className: "bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-3 rounded mt-2 text-sm overflow-x-auto border dark:border-gray-600",
+                                            children: JSON.stringify(maybeRedact(event.payload), null, 2)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/ViewEvents.tsx",
+                                            lineNumber: 170,
+                                            columnNumber: 33
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/ViewEvents.tsx",
+                                    lineNumber: 168,
                                     columnNumber: 29
                                 }, this)
                             ]
-                        }, void 0, true, {
+                        }, event.id, true, {
                             fileName: "[project]/src/components/ViewEvents.tsx",
-                            lineNumber: 154,
+                            lineNumber: 149,
                             columnNumber: 25
-                        }, this)
-                    ]
-                }, event.id, true, {
-                    fileName: "[project]/src/components/ViewEvents.tsx",
-                    lineNumber: 135,
-                    columnNumber: 21
-                }, this))
+                        }, this)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex justify-center items-center mt-6 space-x-2 text-sm",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>setCurrentPage((p)=>Math.max(p - 1, 1)),
+                                className: "px-2 py-1 rounded bg-gray-200 dark:bg-gray-700 disabled:opacity-50",
+                                disabled: currentPage === 1,
+                                children: "◀"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ViewEvents.tsx",
+                                lineNumber: 179,
+                                columnNumber: 25
+                            }, this),
+                            Array.from({
+                                length: totalPages
+                            }, (_, i)=>i + 1).map((page)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>setCurrentPage(page),
+                                    className: `px-3 py-1 rounded ${currentPage === page ? 'bg-blue-600 text-white' : 'bg-gray-100 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600'}`,
+                                    children: page
+                                }, page, false, {
+                                    fileName: "[project]/src/components/ViewEvents.tsx",
+                                    lineNumber: 188,
+                                    columnNumber: 29
+                                }, this)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                onClick: ()=>setCurrentPage((p)=>Math.min(p + 1, totalPages)),
+                                className: "px-2 py-1 rounded bg-gray-200 dark:bg-gray-700 disabled:opacity-50",
+                                disabled: currentPage === totalPages,
+                                children: "▶"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ViewEvents.tsx",
+                                lineNumber: 200,
+                                columnNumber: 25
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/ViewEvents.tsx",
+                        lineNumber: 178,
+                        columnNumber: 21
+                    }, this)
+                ]
+            }, void 0, true)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/ViewEvents.tsx",
-        lineNumber: 106,
+        lineNumber: 116,
         columnNumber: 9
     }, this);
 }
-_s(ViewEvents, "9ks0R/LXrODz/MgkyzgXhhrNWC4=");
+_s(ViewEvents, "mhrjl3YPuPPmuLwEgXfZI3Ntz1Y=");
 _c = ViewEvents;
 var _c;
 __turbopack_context__.k.register(_c, "ViewEvents");
@@ -519,6 +615,7 @@ var _s = __turbopack_context__.k.signature();
 function Dashboard() {
     _s();
     const [events, setEvents] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    const [flaggedCount, setFlaggedCount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Dashboard.useEffect": ()=>{
             fetch(("TURBOPACK compile-time value", "http://localhost:8000") + '/events').then({
@@ -528,10 +625,16 @@ function Dashboard() {
             }["Dashboard.useEffect"]).catch(console.error);
         }
     }["Dashboard.useEffect"], []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "Dashboard.useEffect": ()=>{
+            // Safe: only runs in the browser
+            const flagged = JSON.parse(localStorage.getItem('flaggedEvents') || '{}');
+            const count = Object.values(flagged).filter(Boolean).length;
+            setFlaggedCount(count);
+        }
+    }["Dashboard.useEffect"], []);
     const total = events.length;
     const sanitized = events.filter((e)=>e.sanitized).length;
-    const flagged = JSON.parse(localStorage.getItem('flaggedEvents') || '{}');
-    const flaggedCount = Object.values(flagged).filter(Boolean).length;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "space-y-6",
         children: [
@@ -540,7 +643,7 @@ function Dashboard() {
                 children: "Dashboard Overview"
             }, void 0, false, {
                 fileName: "[project]/src/components/DashboardOverview.tsx",
-                lineNumber: 34,
+                lineNumber: 38,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -554,37 +657,12 @@ function Dashboard() {
                                 children: "Total Events"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DashboardOverview.tsx",
-                                lineNumber: 39,
-                                columnNumber: 21
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-xl font-bold",
-                                children: total
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/DashboardOverview.tsx",
-                                lineNumber: 40,
-                                columnNumber: 21
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/components/DashboardOverview.tsx",
-                        lineNumber: 38,
-                        columnNumber: 17
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "bg-green-100 dark:bg-green-900 p-4 rounded",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-sm",
-                                children: "Sanitized"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/DashboardOverview.tsx",
                                 lineNumber: 43,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "text-xl font-bold",
-                                children: sanitized
+                                children: total
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DashboardOverview.tsx",
                                 lineNumber: 44,
@@ -597,11 +675,11 @@ function Dashboard() {
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "bg-red-100 dark:bg-red-900 p-4 rounded",
+                        className: "bg-green-100 dark:bg-green-900 p-4 rounded",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "text-sm",
-                                children: "Flagged"
+                                children: "Sanitized"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DashboardOverview.tsx",
                                 lineNumber: 47,
@@ -609,7 +687,7 @@ function Dashboard() {
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                 className: "text-xl font-bold",
-                                children: flaggedCount
+                                children: sanitized
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DashboardOverview.tsx",
                                 lineNumber: 48,
@@ -620,11 +698,36 @@ function Dashboard() {
                         fileName: "[project]/src/components/DashboardOverview.tsx",
                         lineNumber: 46,
                         columnNumber: 17
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "bg-red-100 dark:bg-red-900 p-4 rounded",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-sm",
+                                children: "Flagged"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/DashboardOverview.tsx",
+                                lineNumber: 51,
+                                columnNumber: 21
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-xl font-bold",
+                                children: flaggedCount
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/DashboardOverview.tsx",
+                                lineNumber: 52,
+                                columnNumber: 21
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/DashboardOverview.tsx",
+                        lineNumber: 50,
+                        columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/DashboardOverview.tsx",
-                lineNumber: 37,
+                lineNumber: 41,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -635,117 +738,126 @@ function Dashboard() {
                         children: "Recent Events"
                     }, void 0, false, {
                         fileName: "[project]/src/components/DashboardOverview.tsx",
-                        lineNumber: 54,
+                        lineNumber: 58,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
-                        className: "w-full text-sm",
+                        className: "w-full text-sm table-fixed",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                    className: "bg-gray-100 dark:bg-gray-700",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
-                                            className: "text-left",
+                                            className: "text-left px-4 py-2 w-1/12",
                                             children: "ID"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/DashboardOverview.tsx",
-                                            lineNumber: 58,
+                                            lineNumber: 62,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                            className: "text-left px-4 py-2 w-1/12",
                                             children: "Type"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/DashboardOverview.tsx",
-                                            lineNumber: 59,
+                                            lineNumber: 63,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                            className: "text-left px-4 py-2 w-1/12",
                                             children: "Sanitized"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/DashboardOverview.tsx",
-                                            lineNumber: 60,
+                                            lineNumber: 64,
                                             columnNumber: 29
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
+                                            className: "text-left px-4 py-2 w-1/12",
                                             children: "Time"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/DashboardOverview.tsx",
-                                            lineNumber: 61,
+                                            lineNumber: 65,
                                             columnNumber: 29
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/DashboardOverview.tsx",
-                                    lineNumber: 57,
+                                    lineNumber: 61,
                                     columnNumber: 25
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DashboardOverview.tsx",
-                                lineNumber: 56,
+                                lineNumber: 60,
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
                                 children: events.slice(0, 5).map((e)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
+                                        className: "border-t border-gray-200 dark:border-gray-700",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                className: "px-4 py-2",
                                                 children: e.id
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/DashboardOverview.tsx",
-                                                lineNumber: 67,
+                                                lineNumber: 71,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                className: "px-4 py-2",
                                                 children: e.event_type
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/DashboardOverview.tsx",
-                                                lineNumber: 68,
+                                                lineNumber: 72,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                className: "px-4 py-2",
                                                 children: e.sanitized ? 'Yes' : 'No'
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/DashboardOverview.tsx",
-                                                lineNumber: 69,
+                                                lineNumber: 73,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                className: "px-4 py-2",
                                                 children: new Date(e.created_at).toLocaleString()
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/DashboardOverview.tsx",
-                                                lineNumber: 70,
+                                                lineNumber: 74,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, e.id, true, {
                                         fileName: "[project]/src/components/DashboardOverview.tsx",
-                                        lineNumber: 66,
+                                        lineNumber: 70,
                                         columnNumber: 29
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/components/DashboardOverview.tsx",
-                                lineNumber: 64,
+                                lineNumber: 68,
                                 columnNumber: 21
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/DashboardOverview.tsx",
-                        lineNumber: 55,
+                        lineNumber: 59,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/DashboardOverview.tsx",
-                lineNumber: 53,
+                lineNumber: 57,
                 columnNumber: 13
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/DashboardOverview.tsx",
-        lineNumber: 33,
+        lineNumber: 37,
         columnNumber: 9
     }, this);
 }
-_s(Dashboard, "j18ueuia/psAZ/XawE3UyqzOWsE=");
+_s(Dashboard, "T3jgTHKsIqQZKuyEsg8lq6+BX/0=");
 _c = Dashboard;
 var _c;
 __turbopack_context__.k.register(_c, "Dashboard");
@@ -753,130 +865,15 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }
 }}),
-"[project]/src/app/page.tsx [app-client] (ecmascript)": ((__turbopack_context__) => {
-"use strict";
+"[project]/src/app/page.tsx [app-client] (ecmascript)": (function(__turbopack_context__) {
 
-var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_context__;
+var { g: global, __dirname, k: __turbopack_refresh__, m: module, e: exports } = __turbopack_context__;
 {
-__turbopack_context__.s({
-    "default": (()=>Home)
-});
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$SubmitEvent$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/SubmitEvent.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ViewEvents$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ViewEvents.tsx [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$DashboardOverview$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/DashboardOverview.tsx [app-client] (ecmascript)");
-;
-var _s = __turbopack_context__.k.signature();
-'use client';
-;
-;
-;
-;
-function Home() {
-    _s();
-    const [activeTab, setActiveTab] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('dashboard');
-    const renderTab = ()=>{
-        switch(activeTab){
-            case 'dashboard':
-                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$DashboardOverview$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
-                    fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 19,
-                    columnNumber: 16
-                }, this);
-            case 'submit':
-                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$SubmitEvent$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
-                    fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 21,
-                    columnNumber: 16
-                }, this);
-            case 'view':
-                return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ViewEvents$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
-                    fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 23,
-                    columnNumber: 16
-                }, this);
-        }
-    };
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "min-h-screen flex flex-col md:flex-row",
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("aside", {
-                className: "w-full md:w-64 bg-gray-100 dark:bg-gray-900 p-4",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                        className: "text-xl font-bold mb-4",
-                        children: "HIPAA Tracker"
-                    }, void 0, false, {
-                        fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 34,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("nav", {
-                        className: "space-y-2",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: ()=>setActiveTab('dashboard'),
-                                className: `block w-full text-left px-3 py-2 rounded ${activeTab === 'dashboard' ? 'bg-blue-600 text-white' : 'hover:bg-gray-200 dark:hover:bg-gray-700'}`,
-                                children: "📊 Dashboard"
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 36,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: ()=>setActiveTab('submit'),
-                                className: `block w-full text-left px-3 py-2 rounded ${activeTab === 'submit' ? 'bg-blue-600 text-white' : 'hover:bg-gray-200 dark:hover:bg-gray-700'}`,
-                                children: "📝 Submit Event"
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 39,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                onClick: ()=>setActiveTab('view'),
-                                className: `block w-full text-left px-3 py-2 rounded ${activeTab === 'view' ? 'bg-blue-600 text-white' : 'hover:bg-gray-200 dark:hover:bg-gray-700'}`,
-                                children: "📁 View Events"
-                            }, void 0, false, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 42,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 35,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/app/page.tsx",
-                lineNumber: 33,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-                className: "flex-1 p-6 bg-white dark:bg-black",
-                children: renderTab()
-            }, void 0, false, {
-                fileName: "[project]/src/app/page.tsx",
-                lineNumber: 49,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "[project]/src/app/page.tsx",
-        lineNumber: 31,
-        columnNumber: 5
-    }, this);
-}
-_s(Home, "EZIq+yjoOG1DNoxcFU03DF5qjSk=");
-_c = Home;
-var _c;
-__turbopack_context__.k.register(_c, "Home");
-if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
-    __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
-}
-}}),
+const e = new Error(`Could not parse module '[project]/src/app/page.tsx'
+
+Unexpected token `TrackerScanner`. Expected jsx identifier`);
+e.code = 'MODULE_UNPARSEABLE';
+throw e;}}),
 "[project]/node_modules/next/dist/compiled/react/cjs/react-jsx-dev-runtime.development.js [app-client] (ecmascript)": (function(__turbopack_context__) {
 
 var { g: global, __dirname, m: module, e: exports } = __turbopack_context__;

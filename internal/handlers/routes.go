@@ -12,6 +12,7 @@ func RegisterRoutes(mux *http.ServeMux, db *sql.DB) {
     mux.HandleFunc("/healthz", HealthHandler)
     mux.HandleFunc("/event", NewEventHandler(db))
 	mux.HandleFunc("/events", GetEventsHandler(db))
+    mux.HandleFunc("/api/scan", HandleTrackerScan(db))
 }
 
 // import (
