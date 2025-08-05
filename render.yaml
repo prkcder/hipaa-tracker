@@ -4,7 +4,6 @@ services:
     env: docker
     dockerfilePath: ./Dockerfile
     dockerContext: .
-    startCommand: ./main
     plan: free
     autoDeploy: true
     healthCheckPath: /healthz
@@ -12,13 +11,13 @@ services:
       - key: DATABASE_URL
         fromDatabase:
           name: hipaa-db
+          property: connectionString
 
   - type: web
     name: hipaa-frontend
     env: docker
     dockerfilePath: ./Dockerfile
     dockerContext: .
-    startCommand: npm run start
     plan: free
     autoDeploy: true
     envVars:
@@ -30,7 +29,6 @@ services:
     env: docker
     dockerfilePath: ./crawler/Dockerfile
     dockerContext: ./crawler
-    startCommand: node dist/server.js
     plan: free
     autoDeploy: true
     healthCheckPath: /healthz
