@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"io"
 	"log/slog"
+	"os"
 	"strings"
 	"time"
 
@@ -238,7 +239,13 @@ func HandleTrackerScan(db *sql.DB) http.HandlerFunc {
 		}
 
 		slog.Info("=== DEBUG: Calling crawler ===", "url", req.URL)
-		crawlerURL := "http://crawler:4000/scan"
+		// crawlerURL := "http://crawler:4000/scan"
+		crawlerURL := os.Getenv("CRAWLER_URL")
+		if crawlerURL == "" {
+			slog.Error("CRAWLER_URL not set")
+			http.Error(w, "Crawler URL no configured", http.StatusInternalServerError)
+			return
+		}
 		payload, _ := json.Marshal(map[string]string{"url": req.URL})
 		resp, err := http.Post(crawlerURL, "application/json", bytes.NewBuffer(payload))
 

@@ -12,6 +12,8 @@ services:
         fromDatabase:
           name: hipaa-db
           property: connectionString
+      - key: CRAWLER_URL
+        value: https://hipaa-crawler.onrender.com/scan
 
   - type: web
     name: hipaa-frontend
