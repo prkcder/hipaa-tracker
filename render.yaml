@@ -25,7 +25,9 @@ services:
     envVars:
       - key: NEXT_PUBLIC_BACKEND_URL
         value: https://hipaa-backend.onrender.com
+    buildCommand: NEXT_PUBLIC_BACKEND_URL=https://hipaa-backend.onrender.com npm run build
 
+    
   - type: web
     name: hipaa-crawler
     env: docker
