@@ -1,30 +1,30 @@
-# ======================
-# Frontend Builder
-# ======================
-FROM node:22-alpine AS frontend-builder
-WORKDIR /app/web
-COPY web/package*.json ./
-RUN npm install
-COPY web/ ./
-RUN npm run build
+# # ======================
+# # Frontend Builder
+# # ======================
+# FROM node:22-alpine AS frontend-builder
+# WORKDIR /app/web
+# COPY web/package*.json ./
+# RUN npm install
+# COPY web/ ./
+# RUN npm run build
 
-# ======================
-# Frontend Runtime
-# ======================
-FROM node:22-alpine AS frontend-runtime
-WORKDIR /app
+# # ======================
+# # Frontend Runtime
+# # ======================
+# FROM node:22-alpine AS frontend-runtime
+# WORKDIR /app
 
-# Install only production deps (optional if using `next start`)
-COPY --from=frontend-builder /app/web/node_modules ./node_modules
-COPY --from=frontend-builder /app/web/.next ./.next
-COPY --from=frontend-builder /app/web/public ./public
-COPY --from=frontend-builder /app/web/package.json ./package.json
+# # Install only production deps (optional if using `next start`)
+# COPY --from=frontend-builder /app/web/node_modules ./node_modules
+# COPY --from=frontend-builder /app/web/.next ./.next
+# COPY --from=frontend-builder /app/web/public ./public
+# COPY --from=frontend-builder /app/web/package.json ./package.json
 
-# Expose frontend port
-EXPOSE 3000
+# # Expose frontend port
+# EXPOSE 3000
 
-# Run the Next.js server
-CMD ["npm", "run", "start"]
+# # Run the Next.js server
+# CMD ["npm", "run", "start"]
 
 
 

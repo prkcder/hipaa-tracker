@@ -17,7 +17,7 @@ export default function ViewEvents() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [query, setQuery] = useState('');
-    const [showRedacted, setShowRedacted] = useState(true);
+    // const [showRedacted, setShowRedacted] = useState(true);
     const [autoRefresh, setAutoRefresh] = useState(false);
     const [refreshInterval, setRefreshInterval] = useState<NodeJS.Timeout | null>(null);
     const [flags, setFlags] = useState<Record<number, boolean>>({});
@@ -73,10 +73,10 @@ export default function ViewEvents() {
         return () => {
             if (refreshInterval) clearInterval(refreshInterval);
         }
-    }, [autoRefresh]);
+    }, [autoRefresh, refreshInterval]);
 
     const maybeRedact = (payload: Payload) => {
-        if (showRedacted) return payload;
+        // if (showRedacted) return payload;
         const redacted = { ...payload };
         // for (const key of ['email', 'phone', 'dob', 'mrn', 'insurance_id', 'device_id', 'zipcode']) {
         //     if (redacted[key]) redacted[key] = '🔒 REDACTED'
