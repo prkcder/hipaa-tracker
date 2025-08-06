@@ -1,18 +1,26 @@
 package db
 
 import (
-    "database/sql"
-    "os"
+	"database/sql"
+	"fmt"
+	"log/slog"
+	"os"
 
-    _ "github.com/lib/pq"
+	_ "github.com/lib/pq"
 )
 
 func RunMigrations(db *sql.DB) error {
-    sqlBytes, err := os.ReadFile("scripts/seed_db.sql") // update path if needed
-    if err != nil {
-        return err
-    }
+	slog.Info("Running migrations from scripts")
 
-    _, err = db.Exec(string(sqlBytes))
-    return err
+	sqlBytes, err := os.ReadFile("scripts/seed_db.sql")
+	if err != nil {
+		return err
+	}
+
+	if _, err := db.Exec(string(sqlBytes)); err != nil {
+		return fmt.Errorf("failed to execute migration SQL: %w", err)
+	}
+
+	slog.Info("Migrations ran successfully")
+	return err
 }
