@@ -72,6 +72,7 @@ WORKDIR /app
 
 COPY --from=backend-builder /app/main .
 COPY --from=backend-builder /app/sensitive_fields.yaml .
+COPY --from=backend-builder /app/scripts ./scripts
 # COPY --from=frontend-builder /app/web/dist ./static
 
 EXPOSE 8080
