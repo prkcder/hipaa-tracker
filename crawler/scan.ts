@@ -75,10 +75,10 @@ export async function scanForTrackers(url: string): Promise<ScanResult> {
     console.log('Navigating to page...');
     
     // Navigate to the page with timeout
-    await page.goto(url, { 
-      waitUntil: 'networkidle2',
-      timeout: 30000 
-    });
+    // await page.goto(url, { 
+    //   waitUntil: 'networkidle2',
+    //   timeout: 30000 
+    // });
     
     console.log('Page loaded, getting cookies...');
     
