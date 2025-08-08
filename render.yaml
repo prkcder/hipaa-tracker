@@ -13,7 +13,7 @@ services:
           name: hipaa-db
           property: connectionString
       - key: CRAWLER_URL
-        value: https://hipaa-crawler.onrender.com/scan
+        value: https://hipaa-crawler:4000/scan
 
   - type: web
     name: hipaa-frontend
@@ -27,7 +27,7 @@ services:
         value: https://hipaa-backend.onrender.com
     buildCommand: NEXT_PUBLIC_BACKEND_URL=https://hipaa-backend.onrender.com npm run build
 
-    
+
   - type: web
     name: hipaa-crawler
     env: docker
