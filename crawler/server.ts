@@ -26,7 +26,7 @@ app.post('/scan', async (req: Request, res: Response) => {
     const result = await scanForTrackers(url);
     res.json(result);
   } catch (err) {
-    console.error('Scan failed', err);
+    console.error('Scan failed', err instanceof Error ? err.stack : err);
     res.status(500).type('application/json').send(JSON.stringify({ error: 'Failed to scan site' }));
   }
 });

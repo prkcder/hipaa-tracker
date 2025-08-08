@@ -238,9 +238,12 @@ func HandleTrackerScan(db *sql.DB) http.HandlerFunc {
 			return
 		}
 
-		slog.Info("=== DEBUG: Calling crawler ===", "url", req.URL)
+		// slog.Info("=== DEBUG: Calling crawler ===", "url", req.URL)
 		// crawlerURL := "http://crawler:4000/scan"
 		crawlerURL := os.Getenv("CRAWLER_URL")
+
+		slog.Info("=== DEBUG: CRAWLER_URL ===", "url", crawlerURL)
+
 		if crawlerURL == "" {
 			slog.Error("CRAWLER_URL not set")
 			http.Error(w, "Crawler URL no configured", http.StatusInternalServerError)
